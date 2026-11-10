@@ -1,4 +1,4 @@
-# Madeflix — Instruções para avaliação
+# Makeflix — Instruções para avaliação
 
 ## 1. Requisitos
 

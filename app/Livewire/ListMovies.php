@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Film;
 use Livewire\Component;
+use Illuminate\Support\Facades\Cache;
 
 class ListMovies extends Component
 {
@@ -40,12 +41,16 @@ class ListMovies extends Component
         $search = trim((string) request()->query('search', ''));
         $selectedGenre = trim((string) request()->query('genre', ''));
 
-        $genres = Film::query()
-            ->pluck('genre')
-            ->flatMap(fn ($value) => array_filter(array_map('trim', explode(',', (string) $value))))
-            ->unique()
-            ->sort()
-            ->values();
+        $genresVersion = (string) (Film::max('updated_at') ?? 'empty');
+        $genres = Cache::remember("makeflix.genres.{$genresVersion}", now()->addMinutes(10), function () {
+            return Film::query()
+                ->whereNotNull('genre')
+                ->pluck('genre')
+                ->flatMap(fn ($value) => array_filter(array_map('trim', explode(',', (string) $value))))
+                ->unique()
+                ->sort()
+                ->values();
+        });
 
         $films = Film::latest()
             ->when($search !== '', fn ($query) => $query->where('title', 'like', '%' . $search . '%'))

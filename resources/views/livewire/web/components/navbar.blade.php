@@ -1,7 +1,7 @@
 <nav class="sticky top-0 z-50 border-b border-white/5 bg-[#141414]/95 backdrop-blur">
     <div class="mx-auto flex h-[72px] max-w-[1400px] items-center px-7">
         <a href="{{ route('home') }}" class="mr-10 text-2xl font-black tracking-tighter text-red-600">
-            MADEFLIX
+            MAKEFLIX
         </a>
 
         <div class="flex items-center gap-7 text-sm font-semibold text-zinc-300">
