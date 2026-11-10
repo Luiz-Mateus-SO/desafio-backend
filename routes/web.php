@@ -1,7 +1,15 @@
 <?php
 
+use App\Livewire\CreateMovie;
+use App\Livewire\ListMovies;
+use App\Livewire\ShowMovie;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', \App\Livewire\Web\Home::class)->name('home');
-Route::get('/cadastrar', \App\Livewire\Web\CreateFilm::class)->name('create');
-Route::get('/ver', \App\Livewire\Web\ViewFilm::class)->name('see');
+// 1. Página de Listagem (Home)
+Route::get('/', ListMovies::class)->name('home');
+
+// 2. Página de Cadastro
+Route::get('/cadastrar', CreateMovie::class)->name('create');
+
+// 3. Página de Visualização do Filme (com parâmetro {film})
+Route::get('/ver/{film}', ShowMovie::class)->name('see');

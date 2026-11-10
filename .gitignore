@@ -8,6 +8,7 @@
 .env
 .env.backup
 .env.production
+CREDENCIAL_TMDB_PARA_AVALIADORES.txt
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
